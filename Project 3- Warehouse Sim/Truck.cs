@@ -31,8 +31,8 @@ namespace Project_3__Warehouse_Sim
             //maybe something with the randomizing of driver and company names? or should that be a paramaterized constructor...?
             //I'm gonna put this in here for now but should talk with the group about whether we want to have a different method or class to
             //randomize the driver and delivery companies. Also, where will the files be saved? is that a github thing?
-            Driver = null;
-            DeliveryCompany = null;
+            Driver = MakeName();
+            DeliveryCompany = MakeCompany();
 
             Trailer = new Stack<Crate>();   //default empty stack for now-- not sure if we'd ever want to change the initial size
             
@@ -58,13 +58,50 @@ namespace Project_3__Warehouse_Sim
         }
 
         // do these methods belong in the truck class? should they be moved somewhere else? I don't think so...
-        public string MakeName()
+        public static string MakeName()
         {
             string result = string.Empty;
+
+            //i have 25 diff options for first name and 25 for last name
+            //i want a random number generator to pick the number for both and then match that up to the index value in the list of names
+            //I am going to start it as just re-reading the list every time it makes a new truck which can create duplicate names since there's only 50 options total... 
+            //but we'll see if I can or want to fix it later. probably not very important
+
+            Random rand = new();
+            List<string> firstNames = new();
+            List<string> lastNames = new();
+            string firstNamePath = @"first_names.txt";
+            string lastNamePath = @"last_names.txt";
+            string firstName,
+                lastName;
+
+            using (StreamReader rdr = new StreamReader(firstNamePath))
+            {
+                while (rdr.Peek() != -1)
+                {
+                    firstNames.Add(rdr.ReadLine());
+                }
+            }
+
+            using (StreamReader rdr = new StreamReader(lastNamePath))
+            {
+                while (rdr.Peek() != -1)
+                {
+                    lastNames.Add(rdr.ReadLine());
+                }
+            }
+
+            firstName = firstNames[rand.Next(25)];    //this isn't really the best way to get an accurate random number--optimize later
+            lastName = lastNames[rand.Next(25)];
+
+            result += firstName.Trim();
+            result += ", ";
+            result += lastName.Trim();
+
             return result;
         }
 
-        public string MakeCompany()
+        public static string MakeCompany()
         {
             string result = string.Empty;
             return result;
