@@ -57,26 +57,26 @@ namespace Project_3__Warehouse_Sim
             return Trailer.Pop();
         }
 
-        // do these methods belong in the truck class? should they be moved somewhere else? I don't think so...
+        //I GIVE UP ON THE FILE THING, FOR NOW
+        //ALSO STILL NEEDS OPTIMIZING BECAUSE WHY DON'T I JUST MAKE IT A SET METHOD INSTEAD OF ITS OWN STATIC THING
         public static string MakeName()
         {
             string result = string.Empty;
 
-            //i have 25 diff options for first name and 25 for last name
-            //i want a random number generator to pick the number for both and then match that up to the index value in the list of names
             //I am going to start it as just re-reading the list every time it makes a new truck which can create duplicate names since there's only 50 options total... 
             //but we'll see if I can or want to fix it later. probably not very important
 
             Random rand = new();
             List<string> firstNames = new();
             List<string> lastNames = new();
-            string firstNamePath = @"first_names.txt";
-            string lastNamePath = @"last_names.txt";
+            string firstNamePath = @"C:\Users\marro\OneDrive - East Tennessee State University\Data structures\Project 3- Warehouse Sim\first_names.txt";
+            string lastNamePath = @"C:\Users\marro\OneDrive - East Tennessee State University\Data structures\Project 3- Warehouse Sim\last_names.txt";
             string firstName,
                 lastName;
 
             using (StreamReader rdr = new StreamReader(firstNamePath))
             {
+                Console.SetIn(rdr);
                 while (rdr.Peek() != -1)
                 {
                     firstNames.Add(rdr.ReadLine());
@@ -91,11 +91,11 @@ namespace Project_3__Warehouse_Sim
                 }
             }
 
-            firstName = firstNames[rand.Next(25)];    //this isn't really the best way to get an accurate random number--optimize later
-            lastName = lastNames[rand.Next(25)];
+            firstName = firstNames[rand.Next(firstNames.Count)];    //this isn't really the best way to get an accurate random number--optimize later
+            lastName = lastNames[rand.Next(lastNames.Count)];
 
             result += firstName.Trim();
-            result += ", ";
+            result += " ";
             result += lastName.Trim();
 
             return result;
@@ -104,6 +104,38 @@ namespace Project_3__Warehouse_Sim
         public static string MakeCompany()
         {
             string result = string.Empty;
+
+            Random rand = new();
+            List<string> adjectives = new();
+            List<string> nouns = new();
+            string adjPath = @"C:\Users\marro\OneDrive - East Tennessee State University\Data structures\Project 3- Warehouse Sim\adjectives.txt";
+            string nounPath = @"C:\Users\marro\OneDrive - East Tennessee State University\Data structures\Project 3- Warehouse Sim\nouns.txt";
+            string adjective,
+                noun;
+
+            using (StreamReader rdr = new StreamReader(adjPath))
+            {
+                Console.SetIn(rdr);
+                while (rdr.Peek() != -1)
+                {
+                    adjectives.Add(rdr.ReadLine());
+                }
+            }
+
+            using (StreamReader rdr = new StreamReader(nounPath))
+            {
+                while (rdr.Peek() != -1)
+                {
+                    nouns.Add(rdr.ReadLine());
+                }
+            }
+
+            adjective = adjectives[rand.Next(adjectives.Count)];
+            noun = nouns[rand.Next(nouns.Count)];
+
+            result += adjective.Trim();
+            result += noun.Trim();
+
             return result;
         }
     }

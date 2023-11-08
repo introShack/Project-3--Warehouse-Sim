@@ -24,7 +24,9 @@ namespace Project_3__Warehouse_Sim
         {
             Truck testTruck = new Truck();
 
-            Console.WriteLine(MakeName());
+            Console.WriteLine(Truck.MakeName());
+            Console.WriteLine(Truck.MakeCompany());
+           
         }
 
     }
