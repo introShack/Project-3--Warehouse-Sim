@@ -31,6 +31,12 @@ namespace Project_3__Warehouse_Sim
             Id = "Not Set";
         }
 
+        public Crate(string Id)
+        {
+            Price = (rand.Next() % 450) + 50 + ((rand.Next() % 99) / 100.00);
+            this.Id = Id;
+        }
+
         public string GetId() { return Id; }
 
         public void SetId(string Id)
