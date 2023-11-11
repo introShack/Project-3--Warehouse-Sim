@@ -145,13 +145,13 @@ namespace Project_3__Warehouse_Sim
 
             string dockAsString = string.Empty;
 
-            dockAsString += Id + " \n";
-            dockAsString += TruckLine.Count + "\n";
-            dockAsString += TotalSales + " \n";
-            dockAsString += TotalCrates + "\n";
-            dockAsString += TotalTrucks + "\n";
-            dockAsString += TimeInUse + "\n";
-            dockAsString += TimeNotInUse + "\n";
+            dockAsString += "Dock ID:" + Id + " \n";
+            dockAsString += "Number of Trucks In line: " + TruckLine.Count + "\n";
+            dockAsString += "Total amount of sales: " + TotalSales + " \n";
+            dockAsString += "Total amount of crates processed: " + TotalCrates + "\n";
+            dockAsString += "Total amount of Trucks processed: " + TotalTrucks + "\n";
+            dockAsString += "Time dock " + Id + " in use: " + TimeInUse + "\n";
+            dockAsString += "Time dock " + Id + " in not use: " + TimeNotInUse + "\n";
 
 
             return dockAsString;
