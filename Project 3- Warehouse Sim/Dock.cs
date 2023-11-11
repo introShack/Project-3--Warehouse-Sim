@@ -15,9 +15,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Project_3__Warehouse_Sim
 {
+    /// <summary>
+    /// This class will be responsible for the simualation data as well as keeping track of the trucks in line 
+    /// currently looking into graphically stuff to represent data
+    ///
+    /// __________________________________________________________
+    /// Oh great Vessel of Honour,
+    ///  May your servo-motors be guarded,
+    ///   Against malfunction,
+    ///    As your spirit is guarded from impurity.
+    ///     We beseech the Machine God to watch over you.
+    ///      Let flow the sacred oils,
+    ///       And let not the sorrows of the Seven Perplexities
+    ///        trouble thine pistons.
+    ///         Let flow the blessed unguents,
+    ///          And may thine circuitry remain divinely blessed.
+    /// ___________________________________________________________
+    /// </summary>
     internal class Dock
     {
 
@@ -34,6 +50,12 @@ namespace Project_3__Warehouse_Sim
         {
             Id = "NOT ASSIGNED";
             TruckLine = null;
+            TotalSales = 0;
+            TotalCrates = 0;
+            TotalTrucks = 0;
+            TimeInUse = 0;
+            TimeNotInUse = 0;
+
         }
 
 
@@ -41,10 +63,19 @@ namespace Project_3__Warehouse_Sim
         {
             this.Id = id;
             TruckLine = new Queue<Truck>();
+            TotalSales = 0;
+            TotalCrates = 0;
+            TotalTrucks = 0;
+            TimeInUse = 0;
+            TimeNotInUse = 0;
+
 
         }
 
-
+        /// <summary>
+        /// Adds truck of choice onto queue, 
+        /// </summary>
+        /// <param name="truck"></param>
         public void JoinLine(Truck truck)
         {
 
