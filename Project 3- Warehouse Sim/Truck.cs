@@ -32,7 +32,7 @@ namespace Project_3__Warehouse_Sim
             DeliveryCompany = MakeCompany();
 
             Trailer = new Stack<Crate>();   //default empty stack for now-- not sure if we'd ever want to change the initial size
-            
+
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Project_3__Warehouse_Sim
         /// <returns>Crate that was just removed.</returns>
         public Crate Unload()
         {
-           //program will need logic for when the truck is empty
+            //program will need logic for when the truck is empty
             return Trailer.Pop();
         }
 
@@ -126,11 +126,12 @@ namespace Project_3__Warehouse_Sim
 
         //method that will totally be in warehouse class:
         //csv crate information
-        
+
         //every time a crate is unloaded in warehouse, it should save to a file. I think the file should actually be initialized in the driver
         //because there's not really another way to not re create a file every time
         //but that begs the question, how is warehouse supposed to access a file that exists in program?
 
         //there also needs to be extra logic for the unload status that checks if truck is empty after crate unloads, if another truck was in the dock when empty,
         //or if not
+    }
 }
