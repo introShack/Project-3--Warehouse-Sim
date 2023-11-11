@@ -8,4 +8,26 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Stuff\adjectives.txt" />
+    <None Remove="Stuff\first_names.txt" />
+    <None Remove="Stuff\last_names.txt" />
+    <None Remove="Stuff\nouns.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Stuff\adjectives.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stuff\first_names.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stuff\last_names.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stuff\nouns.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
