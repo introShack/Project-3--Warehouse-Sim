@@ -22,10 +22,15 @@ namespace Project_3__Warehouse_Sim
     {
         static void Main(string[] args)
         {
-            Truck testTruck = new Truck();
+            //Truck testTruck = new Truck();
 
-            Console.WriteLine(Truck.MakeName());
-            Console.WriteLine(Truck.MakeCompany());
+            Dock dock = new Dock("21");
+
+            dock.ToString();
+
+
+            //Console.WriteLine(Truck.MakeName());
+            //Console.WriteLine(Truck.MakeCompany());
            
         }
 
