@@ -54,14 +54,14 @@ namespace Project_3__Warehouse_Sim
             return Trailer.Pop();
         }
 
-        //ALSO STILL NEEDS OPTIMIZING BECAUSE WHY DON'T I JUST MAKE IT A SET METHOD INSTEAD OF ITS OWN STATIC THING
-        //or, maybe this method should be moved to the warehouse class whenever it's done?
+        //can't decide if I want to make this a static method or make it part of each truck as a set method
+        //or, maybe this method should be moved to the dock class whenever it's done?
         public static string MakeName()
         {
             string name = string.Empty;
 
-            //I am going to start it as just re-reading the list every time it makes a new truck which can create duplicate names since there's only 50 options total... 
-            //but we'll see if I can or want to fix it later. probably not very important
+            //currently this implementation allows for duplicates because it will re-load the file every time.
+            //I don't think we really care about this very much tbh but still want to point it out.
 
             Random rand = new();
             List<string> firstNames = new();
@@ -98,8 +98,8 @@ namespace Project_3__Warehouse_Sim
             Random rand = new();
             List<string> adjectives = new();
             List<string> nouns = new();
-            string adjPath = @"C:\Users\marro\OneDrive - East Tennessee State University\Data structures\Project 3- Warehouse Sim\adjectives.txt";
-            string nounPath = @"C:\Users\marro\OneDrive - East Tennessee State University\Data structures\Project 3- Warehouse Sim\nouns.txt";
+            string adjPath = @".\Stuff\adjectives.txt";
+            string nounPath = @".\Stuff\nouns.txt";
             string adjective,
                 noun;
 
@@ -133,10 +133,4 @@ namespace Project_3__Warehouse_Sim
 
         //there also needs to be extra logic for the unload status that checks if truck is empty after crate unloads, if another truck was in the dock when empty,
         //or if not
-
-        
-        
-
-
-    }
 }
