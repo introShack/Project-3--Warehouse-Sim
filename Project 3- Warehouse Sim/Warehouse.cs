@@ -47,7 +47,7 @@ namespace Project_3__Warehouse_Sim
              *      
              *      if(Entrance is not Null)                                            //If the entrance has a truck in it (meaning it is not Null)
              *      {
-             *          foreach(dock in Docks)                                          //The docks are searched
+             *          foreach(Dock dock in Docks)                                     //The docks are searched
              *          {
              *              if(dock.GetTruckCount() < mostEmptyDock.GetTruckCount())
              *                  mostEmtpyDock = dock;                                   //And the least-filled dock is stored  
@@ -56,15 +56,15 @@ namespace Project_3__Warehouse_Sim
              *          mostEmptyDock.JoinLine(Entrance.Dequeue())                      //Once the most emtpy dock has been found, a truck is put into the doc's line.
              *      }
              *      
-             *      foreach(Dock in Docks)                                              //Each dock is then allowed to do it's job in this time increment
+             *      foreach(Dock dock in Docks)                                         //Each dock is then allowed to do it's job in this time increment
              *      {
-             *          if(Dock.GetLine().Peek().GetTrailer().Peek() == null)           //This peeks into the dock's line (getting a Truck), then peeks into that truck's trailer to get a crate).
+             *          if(dock.GetLine().Peek().GetTrailer().Peek() == null)           //This peeks into the dock's line (getting a Truck), then peeks into that truck's trailer to get a crate).
              *          {                                                               //If the trailer has no more crates to unload, it will return "null"
-             *              Dock.SendOff();                                             //And the truck will be sent off on this time increment
+             *              dock.SendOff();                                             //And the truck will be sent off on this time increment
              *          }
              *          else                                                            //If the dock has not needed to send off a Truck
              *          {
-             *              crateBeingHandled = Dock.GetLine().Peek().Unload()          //A crate is unloaded and stored in "crateBeingHandled"
+             *              crateBeingHandled = dock.GetLine().Peek().Unload()          //A crate is unloaded and stored in "crateBeingHandled"
              *              
              *              //Store crate information here                              //The information of the crate is all stored and handled here.
              *              //(unsure how this could work. Maybe Aurora's task?)
