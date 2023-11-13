@@ -38,7 +38,7 @@ namespace Project_3__Warehouse_Sim
     {
 
         public string Id { get; private set; }
-        Queue<Truck> TruckLine;
+        public Queue<Truck> TruckLine;
         public double TotalSales { get; private set; }
         public int TotalCrates { get; private set; }
         public int TotalTrucks { get; private set; }
