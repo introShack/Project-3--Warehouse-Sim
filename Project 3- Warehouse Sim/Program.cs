@@ -22,7 +22,8 @@ namespace Project_3__Warehouse_Sim
     {
         static void Main(string[] args)
         {
-
+            Warehouse ware = new Warehouse();
+            ware.Run();
         }
 
     }
