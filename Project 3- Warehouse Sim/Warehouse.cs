@@ -30,23 +30,7 @@ namespace Project_3__Warehouse_Sim
         public double TotalTruckValue { get; private set; }
         public int LongestLine { get; private set; }
 
-        //TODO
-        //make a new class that does data processing and writes report to file
-        //worry about the crate file writing part next-- how tf am I gonna do intervals???
-        
-
-        //data processor method does all this
-        //    averageValue = totalValue / totalCrates;
-        //        averageTruckValue = totalTruckValue / totalTrucks;
-        //        timeNotInUse = (48 * Docks.Count) - timeInUse;
-        //        averageTimeInUse = timeInUse / Docks.Count;
-        //        totalCost = timeInUse* 100;
-        //        revenue = totalValue - totalCost;
-
-        //TODO
-        //is that nice crate that he saved for me really necessary lol??
-
-        
+        public string FilePath { get; set; }
 
 
         public Warehouse(int numOfDocks) 
@@ -54,6 +38,7 @@ namespace Project_3__Warehouse_Sim
             rand = new Random();
             Docks = new List<Dock>(numOfDocks);
             Entrance = new Queue<Truck>();
+            FilePath = "defaultFilePath.txt";
 
             for (int i = 1;  i <= numOfDocks; i++)
             {
@@ -65,32 +50,41 @@ namespace Project_3__Warehouse_Sim
 
         public void Run()   //The simulation that will be run in the driver
         {
-            Crate crateBeingHandled;            //Creates a crate that represents the current crate being handled, to allow for storage of info
+            StreamWriter writer = new(FilePath);
 
-
-            for (int i=1; i<=48; i++)
+            try
             {
-                Console.WriteLine($"\n\nNEW TIME INTERVAL {i}");
+                Crate crateBeingHandled;            //Creates a crate that represents the current crate being handled, to allow for storage of info
 
-                Console.WriteLine("\nTruck arrival time:");
 
-                TruckArrival(i);
+                for (int i = 1; i <= 48; i++)
+                {
+                    Console.WriteLine($"\n\nNEW TIME INTERVAL {i}");
 
-                Console.WriteLine("\nTruck to dock transferral:");
+                    Console.WriteLine("\nTruck arrival time:");
 
-                EntranceTransferral();
+                    TruckArrival(i);
 
-                Console.WriteLine("\nTruck unloading:");
-                crateBeingHandled = UnloadTrucks(Docks);//The loop ends, the time increments, and the process is repeated
+                    Console.WriteLine("\nTruck to dock transferral:");
+
+                    EntranceTransferral();
+
+                    Console.WriteLine("\nTruck unloading:");
+                    crateBeingHandled = UnloadTrucks(Docks, i, writer); //The loop ends, the time increments, and the process is repeated
+                }
+
+                foreach (Dock dock in Docks)
+                {
+                    TotalTrucks += dock.TotalTrucks;
+                    TotalCrates += dock.TotalCrates;
+                    TimeInUse += dock.TimeInUse;
+                }
+
             }
-
-            foreach (Dock dock in Docks)
+            finally
             {
-                TotalTrucks += dock.TotalTrucks;
-                TotalCrates += dock.TotalCrates;
-                TimeInUse += dock.TimeInUse;
+                writer.Close();
             }
-
         }
 
         private void TruckArrival(int i)
@@ -170,7 +164,7 @@ namespace Project_3__Warehouse_Sim
 
         }
 
-        private Crate UnloadTrucks(List<Dock> docks)
+        private Crate UnloadTrucks(List<Dock> docks, int increment, StreamWriter writer)
         {
             Crate crate = new Crate();
             foreach (Dock dock in docks)                                         //Each dock is then allowed to do it's job in this time increment
@@ -191,14 +185,14 @@ namespace Project_3__Warehouse_Sim
                 {
                     crate = truckBeingWorkedOn.Unload();          //A crate is unloaded and stored in "crate"
 
+                    DataProcessing.CrateProcessing(increment, crate, truckBeingWorkedOn.Driver, truckBeingWorkedOn.DeliveryCompany, truckBeingWorkedOn.Trailer.Count, dock.TruckLine.Count, writer);
+
                     TotalValue += crate.GetPrice();
 
                     dock.TotalCrates++;
                     dock.TimeInUse++;
 
                     Console.WriteLine($"\t{truckBeingWorkedOn.DeliveryCompany} on dock {dock.Id} was unloaded a crate. The truck now has {truckBeingWorkedOn.Trailer.Count} crates left to unload.");
-
-
 
                 }
 

@@ -24,12 +24,12 @@ namespace Project_3__Warehouse_Sim
         {
             string filePath = "reportTest.txt";
             Warehouse ware = new Warehouse(10);
+            ware.FilePath = "test.txt";
             ware.Run();
+
 
             DataProcessing.SimulationReport(ware, filePath);
 
-            //WAIT A SECOND
-            //ARENT TOTAL CRATES AND TIME IN USE THE SAME FUCKIN THING
 
 
         }
