@@ -22,8 +22,16 @@ namespace Project_3__Warehouse_Sim
     {
         static void Main(string[] args)
         {
-            Warehouse ware = new Warehouse();
+            string filePath = "reportTest.txt";
+            Warehouse ware = new Warehouse(10);
+            ware.FilePath = "test.txt";
             ware.Run();
+
+
+            DataProcessing.SimulationReport(ware, filePath);
+
+
+
         }
 
     }
