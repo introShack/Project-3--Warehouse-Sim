@@ -33,6 +33,7 @@ namespace Project_3__Warehouse_Sim
 
         //TODO
         //make a new class that does data processing and writes report to file
+        //worry about the crate file writing part next-- how tf am I gonna do intervals???
 
         //totalTrucks += dock.TotalTrucks;
         //            totalCrates += dock.TotalCrates;
