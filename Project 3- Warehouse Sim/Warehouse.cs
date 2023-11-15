@@ -23,7 +23,29 @@ namespace Project_3__Warehouse_Sim
         private List<Dock> Docks = new List<Dock>(10);   //To-Do: Set the number of Docs we will be working with. (Maybe start at 10?)
          
         private Queue<Truck> Entrance = new Queue<Truck>();  // Proposed rule. Anywhere between 1-3 trucks arrive at the Entrance per time increment
-                                        // Takes 1 time increment to get a trunk out of the Entrance onto a Dock
+                                                             // Takes 1 time increment to get a trunk out of the Entrance onto a Dock
+        //total trucks, total crates, time in use, total truck value, total value
+        public int TotalTrucks { get; private set; }
+        public int TotalCrates { get; private set; }
+        public int TimeInUse { get; private set; }
+        public double TotalValue { get; private set; }
+        public double TotalTruckValue { get; private set; }
+
+        //TODO
+        //make a new class that does data processing and writes report to file
+
+        //totalTrucks += dock.TotalTrucks;
+        //            totalCrates += dock.TotalCrates;
+        //            timeInUse += dock.TimeInUse;
+        //        }
+        //    averageValue = totalValue / totalCrates;
+        //        averageTruckValue = totalTruckValue / totalTrucks;
+        //        timeNotInUse = (48 * Docks.Count) - timeInUse;
+        //        averageTimeInUse = timeInUse / Docks.Count;
+        //        totalCost = timeInUse* 100;
+        //        revenue = totalValue - totalCost;
+
+
         public Warehouse() 
         { 
             for (int i = 1;  i <= 10; i++)
