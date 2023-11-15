@@ -22,18 +22,16 @@ namespace Project_3__Warehouse_Sim
     {
         static void Main(string[] args)
         {
-            Warehouse ware = new Warehouse();
+            string filePath = "reportTest.txt";
+            Warehouse ware = new Warehouse(10);
             ware.Run();
 
-            Console.WriteLine(ware.TotalValue);
-            Console.WriteLine(ware.TotalTruckValue);
-            Console.WriteLine(ware.TotalTrucks);
-            Console.WriteLine(ware.TotalCrates);
-            Console.WriteLine(ware.TimeInUse);
-            Console.WriteLine(ware.LongestLine);
+            DataProcessing.SimulationReport(ware, filePath);
 
             //WAIT A SECOND
             //ARENT TOTAL CRATES AND TIME IN USE THE SAME FUCKIN THING
+
+
         }
 
     }

@@ -18,11 +18,10 @@ namespace Project_3__Warehouse_Sim
 {
     internal class Warehouse
     {
-        Random rand = new Random(); //To generate random numbers for truck arrivals
+        public Random rand { get; private set; } //To generate random numbers for truck arrivals
 
-        private List<Dock> Docks = new List<Dock>(5);   //To-Do: Set the number of Docs we will be working with. (Maybe start at 10?)
-         
-        private Queue<Truck> Entrance = new Queue<Truck>();  // Proposed rule. Anywhere between 1-3 trucks arrive at the Entrance per time increment
+        public List<Dock> Docks { get; private set; }   //To-Do: Set the number of Docs we will be working with. (Maybe start at 10?)
+        public Queue<Truck> Entrance { get; private set; }  // Proposed rule. Anywhere between 1-3 trucks arrive at the Entrance per time increment
                                                              // Takes 1 time increment to get a trunk out of the Entrance onto a Dock
         public int TotalTrucks { get; private set; }
         public int TotalCrates { get; private set; }
@@ -34,6 +33,7 @@ namespace Project_3__Warehouse_Sim
         //TODO
         //make a new class that does data processing and writes report to file
         //worry about the crate file writing part next-- how tf am I gonna do intervals???
+        
 
         //data processor method does all this
         //    averageValue = totalValue / totalCrates;
@@ -49,9 +49,13 @@ namespace Project_3__Warehouse_Sim
         
 
 
-        public Warehouse() 
-        { 
-            for (int i = 1;  i <= 5; i++)
+        public Warehouse(int numOfDocks) 
+        {
+            rand = new Random();
+            Docks = new List<Dock>(numOfDocks);
+            Entrance = new Queue<Truck>();
+
+            for (int i = 1;  i <= numOfDocks; i++)
             {
                 Docks.Add(new Dock(i.ToString()));
             }
@@ -160,7 +164,7 @@ namespace Project_3__Warehouse_Sim
                         TotalTruckValue += Entrance.Peek().Trailer.Peek().GetPrice();
                     }
 
-                    mostEmptyDock.JoinLine(Entrance.Dequeue());                      //Once the most emtpy dock has been found, a truck is put into the dock's line
+                    mostEmptyDock.JoinLine(Entrance.Dequeue());                      //Once the most empty dock has been found, a truck is put into the dock's line
                 }
             }
 
