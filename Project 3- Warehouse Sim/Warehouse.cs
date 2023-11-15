@@ -145,6 +145,11 @@ namespace Project_3__Warehouse_Sim
 
                     Console.WriteLine($"\tTruck from {Entrance.Peek().DeliveryCompany} was sent to dock {mostEmptyDock.Id} it has {Entrance.Peek().Trailer.Count} crates in it.");
 
+                    for (int k = 0; k < Entrance.Peek().Trailer.Count; k++)
+                    {
+                        TotalTruckValue += Entrance.Peek().Trailer.Peek().GetPrice();
+                    }
+
                     mostEmptyDock.JoinLine(Entrance.Dequeue());                      //Once the most emtpy dock has been found, a truck is put into the dock's line
                 }
             }
