@@ -20,7 +20,7 @@ namespace Project_3__Warehouse_Sim
     {
         Random rand = new Random(); //To generate random numbers for truck arrivals
 
-        private List<Dock> Docks = new List<Dock>(10);   //To-Do: Set the number of Docs we will be working with. (Maybe start at 10?)
+        private List<Dock> Docks = new List<Dock>(5);   //To-Do: Set the number of Docs we will be working with. (Maybe start at 10?)
          
         private Queue<Truck> Entrance = new Queue<Truck>();  // Proposed rule. Anywhere between 1-3 trucks arrive at the Entrance per time increment
                                                              // Takes 1 time increment to get a trunk out of the Entrance onto a Dock
@@ -35,10 +35,7 @@ namespace Project_3__Warehouse_Sim
         //make a new class that does data processing and writes report to file
         //worry about the crate file writing part next-- how tf am I gonna do intervals???
 
-        //totalTrucks += dock.TotalTrucks;
-        //            totalCrates += dock.TotalCrates;
-        //            timeInUse += dock.TimeInUse;
-        //        }
+        //data processor method does all this
         //    averageValue = totalValue / totalCrates;
         //        averageTruckValue = totalTruckValue / totalTrucks;
         //        timeNotInUse = (48 * Docks.Count) - timeInUse;
@@ -54,7 +51,7 @@ namespace Project_3__Warehouse_Sim
 
         public Warehouse() 
         { 
-            for (int i = 1;  i <= 10; i++)
+            for (int i = 1;  i <= 5; i++)
             {
                 Docks.Add(new Dock(i.ToString()));
             }
@@ -80,7 +77,14 @@ namespace Project_3__Warehouse_Sim
                 EntranceTransferral();
 
                 Console.WriteLine("\nTruck unloading:");
-                crateBeingHandled = UnloadTrucks(Docks);//The loop ends, the time increments, and the process is reapeated
+                crateBeingHandled = UnloadTrucks(Docks);//The loop ends, the time increments, and the process is repeated
+            }
+
+            foreach (Dock dock in Docks)
+            {
+                TotalTrucks += dock.TotalTrucks;
+                TotalCrates += dock.TotalCrates;
+                TimeInUse += dock.TimeInUse;
             }
 
         }

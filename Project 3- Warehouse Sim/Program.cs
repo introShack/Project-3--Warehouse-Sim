@@ -24,6 +24,16 @@ namespace Project_3__Warehouse_Sim
         {
             Warehouse ware = new Warehouse();
             ware.Run();
+
+            Console.WriteLine(ware.TotalValue);
+            Console.WriteLine(ware.TotalTruckValue);
+            Console.WriteLine(ware.TotalTrucks);
+            Console.WriteLine(ware.TotalCrates);
+            Console.WriteLine(ware.TimeInUse);
+            Console.WriteLine(ware.LongestLine);
+
+            //WAIT A SECOND
+            //ARENT TOTAL CRATES AND TIME IN USE THE SAME FUCKIN THING
         }
 
     }
