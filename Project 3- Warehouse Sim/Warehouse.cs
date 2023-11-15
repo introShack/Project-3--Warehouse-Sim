@@ -24,12 +24,12 @@ namespace Project_3__Warehouse_Sim
          
         private Queue<Truck> Entrance = new Queue<Truck>();  // Proposed rule. Anywhere between 1-3 trucks arrive at the Entrance per time increment
                                                              // Takes 1 time increment to get a trunk out of the Entrance onto a Dock
-        //total trucks, total crates, time in use, total truck value, total value
         public int TotalTrucks { get; private set; }
         public int TotalCrates { get; private set; }
         public int TimeInUse { get; private set; }
         public double TotalValue { get; private set; }
         public double TotalTruckValue { get; private set; }
+        public int LongestLine { get; private set; }
 
         //TODO
         //make a new class that does data processing and writes report to file
@@ -52,6 +52,8 @@ namespace Project_3__Warehouse_Sim
             {
                 Docks.Add(new Dock(i.ToString()));
             }
+
+            //if my code doesn't immediately work: don't I need to initialize all of the new attributes I'm adding??
         }
 
         public void Run()   //The simulation that will be run in the driver
@@ -134,7 +136,11 @@ namespace Project_3__Warehouse_Sim
                     foreach (Dock dock in Docks)                                     //The docks are searched
                     {
                         if (dock.TruckLine.Count() < mostEmptyDock.TruckLine.Count() || mostEmptyDock.Id == "-1")
-                            mostEmptyDock = dock;                                   //And the least-filled dock is stored  
+                            mostEmptyDock = dock;                                   //And the least-filled dock is stored
+                        if (dock.TruckLine.Count > LongestLine)
+                        {
+                            LongestLine = dock.TruckLine.Count;
+                        }
                     }
 
                     Console.WriteLine($"\tTruck from {Entrance.Peek().DeliveryCompany} was sent to dock {mostEmptyDock.Id} it has {Entrance.Peek().Trailer.Count} crates in it.");
