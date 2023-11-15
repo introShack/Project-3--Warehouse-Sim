@@ -181,7 +181,9 @@ namespace Project_3__Warehouse_Sim
                 }
                 else if (truckBeingWorkedOn.Trailer.Count != 0)           //If a truck's trailer has crates in it (meaning it's non-zero), then a crate is unloaded
                 {
-                    crate = truckBeingWorkedOn.Unload();          //A crate is unloaded and stored in "crateBeingHandled"
+                    crate = truckBeingWorkedOn.Unload();          //A crate is unloaded and stored in "crate"
+
+                    TotalValue += crate.GetPrice();
 
                     dock.TotalCrates++;
                     dock.TimeInUse++;
