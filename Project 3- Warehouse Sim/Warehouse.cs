@@ -45,6 +45,11 @@ namespace Project_3__Warehouse_Sim
         //        totalCost = timeInUse* 100;
         //        revenue = totalValue - totalCost;
 
+        //TODO
+        //is that nice crate that he saved for me really necessary lol??
+
+        
+
 
         public Warehouse() 
         { 
@@ -176,6 +181,10 @@ namespace Project_3__Warehouse_Sim
                 else if (truckBeingWorkedOn.Trailer.Count != 0)           //If a truck's trailer has crates in it (meaning it's non-zero), then a crate is unloaded
                 {
                     crate = truckBeingWorkedOn.Unload();          //A crate is unloaded and stored in "crateBeingHandled"
+
+                    dock.TotalCrates++;
+                    dock.TimeInUse++;
+
                     Console.WriteLine($"\t{truckBeingWorkedOn.DeliveryCompany} on dock {dock.Id} was unloaded a crate. The truck now has {truckBeingWorkedOn.Trailer.Count} crates left to unload.");
 
 
