@@ -25,7 +25,7 @@ namespace Project_3__Warehouse_Sim
                 cratesAndTrucks = "The truck has been unloaded, but there are no trucks in the line";
             }
 
-            writer.WriteLine($"{increment},{driver},{company},{crate.GetId()},{crate.GetPrice()},{cratesAndTrucks}");
+            writer.WriteLine($"{increment},{driver},{company},{crate.Id},{crate.Price},{cratesAndTrucks}");
         }
 
         static public void SimulationReport(Warehouse warehouse, string filePath)

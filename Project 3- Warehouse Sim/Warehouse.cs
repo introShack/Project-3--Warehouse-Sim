@@ -32,6 +32,8 @@ namespace Project_3__Warehouse_Sim
 
         public string FilePath { get; set; }
 
+        public int CrateNumber { get; private set; }
+
 
         public Warehouse(int numOfDocks) 
         {
@@ -39,6 +41,7 @@ namespace Project_3__Warehouse_Sim
             Docks = new List<Dock>(numOfDocks);
             Entrance = new Queue<Truck>();
             FilePath = "defaultFilePath.txt";
+            CrateNumber = 0;
 
             for (int i = 1;  i <= numOfDocks; i++)
             {
@@ -100,13 +103,13 @@ namespace Project_3__Warehouse_Sim
 
                 if (i < 24 && chanceOfArrival <= i / 24.00)         //If the chance generated is less than the chance designated for the time frame (as per Gillenwater's suggestion) a truck is spawned at the entrance
                 {
-                    int crateNumber = 0;                            //A crate number that increments with every crate loaded into the truck
+                                                //A crate number that increments with every crate loaded into the truck
                     do
                     {
                         chanceOfNoCrate = (rand.Next() % 100) / 100.00;         //A randomized chanace for the crates to stop being loaded into the truck
 
-                        tempTruck.Load(new Crate(crateNumber.ToString()));      //Loads the crate into the truck and increments the crate number for Id purposes
-                        crateNumber++;
+                        tempTruck.Load(new Crate(CrateNumber.ToString()));      //Loads the crate into the truck and increments the crate number for Id purposes
+                        CrateNumber++;
                     } while (tempTruck.Trailer.Count < 12 && chanceOfNoCrate < 0.80);           //80% chance of the crates no longer being loaded into the truck per loop.
 
                     Entrance.Enqueue(tempTruck);                               //A new truck is enqueued into the entrance
@@ -115,13 +118,13 @@ namespace Project_3__Warehouse_Sim
                 }
                 else if (i >= 24 && chanceOfArrival <= (48 - i) / 24.00)            //The same code as above, but with a different chance of arrival, as per Gillenwater's suggestion)
                 {
-                    int crateNumber = 0;
+                    
                     do
                     {
                         chanceOfNoCrate = (rand.Next() % 100) / 100.00;
 
-                        tempTruck.Load(new Crate(crateNumber.ToString()));
-                        crateNumber++;
+                        tempTruck.Load(new Crate(CrateNumber.ToString()));
+                        CrateNumber++;
                     } while (tempTruck.Trailer.Count < 12 && chanceOfNoCrate < 0.80);
 
                     Entrance.Enqueue(tempTruck);
@@ -155,7 +158,7 @@ namespace Project_3__Warehouse_Sim
 
                     for (int k = 0; k < Entrance.Peek().Trailer.Count; k++)
                     {
-                        TotalTruckValue += Entrance.Peek().Trailer.Peek().GetPrice();
+                        TotalTruckValue += Entrance.Peek().Trailer.Peek().Price;
                     }
 
                     mostEmptyDock.JoinLine(Entrance.Dequeue());                      //Once the most empty dock has been found, a truck is put into the dock's line
@@ -187,7 +190,7 @@ namespace Project_3__Warehouse_Sim
 
                     DataProcessing.CrateProcessing(increment, crate, truckBeingWorkedOn.Driver, truckBeingWorkedOn.DeliveryCompany, truckBeingWorkedOn.Trailer.Count, dock.TruckLine.Count, writer);
 
-                    TotalValue += crate.GetPrice();
+                    TotalValue += crate.Price;
 
                     dock.TotalCrates++;
                     dock.TimeInUse++;

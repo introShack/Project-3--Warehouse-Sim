@@ -21,9 +21,9 @@ namespace Project_3__Warehouse_Sim
     {
         public Random rand = new Random();
 
-        private string Id;
+        public string Id { get; private set; }
 
-        private double Price;
+        public double Price { get; private set; }
 
         public Crate()
         {
@@ -35,20 +35,6 @@ namespace Project_3__Warehouse_Sim
         {
             Price = (rand.Next() % 450) + 50 + ((rand.Next() % 99) / 100.00);
             this.Id = Id;
-        }
-
-        public string GetId() { return Id; }
-
-        public void SetId(string Id)
-        {
-            this.Id = Id;
-        }
-
-        public double GetPrice() { return Price; }
-
-        private void SetPrice(double Price)
-        {
-            this.Price = Price;
         }
 
         public override string ToString()
