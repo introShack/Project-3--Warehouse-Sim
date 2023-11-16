@@ -11,6 +11,7 @@ namespace Project_3__Warehouse_Sim
         static public void CrateProcessing(int increment, Crate crate, string driver, string company, int trailer, int truckLine, StreamWriter writer)
         {
             string cratesAndTrucks;
+            string toPrint;
 
             if (trailer > 0)
             {
@@ -25,13 +26,16 @@ namespace Project_3__Warehouse_Sim
                 cratesAndTrucks = "The truck has been unloaded, but there are no trucks in the line";
             }
 
-            writer.WriteLine($"{increment},{driver},{company},{crate.Id},{crate.Price},{cratesAndTrucks}");
+            toPrint = $"{increment},{driver},{company},{crate.Id},{crate.Price},{cratesAndTrucks}";
+
+            writer.WriteLine(toPrint);
         }
 
         static public void SimulationReport(Warehouse warehouse, string filePath)
         {
             int totalCost;
             string toPrint = string.Empty;
+
             using (StreamWriter writer = new(filePath))
             {
                 toPrint += $"Number of docks: {warehouse.Docks.Count}";

@@ -48,7 +48,6 @@ namespace Project_3__Warehouse_Sim
                 Docks.Add(new Dock(i.ToString()));
             }
 
-            //if my code doesn't immediately work: don't I need to initialize all of the new attributes I'm adding??
         }
 
         public void Run()   //The simulation that will be run in the driver
