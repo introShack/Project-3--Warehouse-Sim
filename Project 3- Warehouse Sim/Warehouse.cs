@@ -75,14 +75,23 @@ namespace Project_3__Warehouse_Sim
                     crateBeingHandled = UnloadTrucks(Docks, i, writer); //The loop ends, the time increments, and the process is repeated
                 }
 
+                //save data from docks to variables to be used in simulation report
                 foreach (Dock dock in Docks)
                 {
                     TotalTrucks += dock.TotalTrucks;
                     TotalCrates += dock.TotalCrates;
                     TimeInUse += dock.TimeInUse;
                 }
-
             }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("File could not be found-- did you download everything from the Github?");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Something strange happened. Try running the simulation again.");
+            }
+            //ensures that crate report file will be closed once the simulation is done being run
             finally
             {
                 writer.Close();
@@ -117,13 +126,12 @@ namespace Project_3__Warehouse_Sim
                 }
                 else if (i >= 24 && chanceOfArrival <= (48 - i) / 24.00)            //The same code as above, but with a different chance of arrival, as per Gillenwater's suggestion)
                 {
-                    
                     do
                     {
                         chanceOfNoCrate = (rand.Next() % 100) / 100.00;
 
                         tempTruck.Load(new Crate(CrateNumber.ToString()));
-                        CrateNumber++;
+                        CrateNumber++;                                              //increase crate number every time a crate is added to a truck for the simulation report
                     } while (tempTruck.Trailer.Count < 12 && chanceOfNoCrate < 0.80);
 
                     Entrance.Enqueue(tempTruck);
@@ -147,6 +155,8 @@ namespace Project_3__Warehouse_Sim
                     {
                         if (dock.TruckLine.Count() < mostEmptyDock.TruckLine.Count() || mostEmptyDock.Id == "-1")
                             mostEmptyDock = dock;                                   //And the least-filled dock is stored
+
+                        //keep track of the longest dock line for simulation report
                         if (dock.TruckLine.Count > LongestLine)
                         {
                             LongestLine = dock.TruckLine.Count;
@@ -187,10 +197,11 @@ namespace Project_3__Warehouse_Sim
                 {
                     crate = truckBeingWorkedOn.Unload();          //A crate is unloaded and stored in "crate"
 
+                    //every time a crate is unloaded, crateProcessing takes in necessary information and copies into crate report file
                     DataProcessing.CrateProcessing(increment, crate, truckBeingWorkedOn.Driver, truckBeingWorkedOn.DeliveryCompany, truckBeingWorkedOn.Trailer.Count, dock.TruckLine.Count, writer);
 
+                    //update dock variables whenever a crate is unloaded to use for simulation report
                     TotalValue += crate.Price;
-
                     dock.TotalCrates++;
                     dock.TimeInUse++;
 
