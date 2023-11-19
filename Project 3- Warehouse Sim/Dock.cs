@@ -34,7 +34,7 @@ namespace Project_3__Warehouse_Sim
     ///          And may thine circuitry remain divinely blessed.
     /// ___________________________________________________________
     /// </summary>
-    internal class Dock
+    public class Dock
     {
 
         public string Id { get; private set; }

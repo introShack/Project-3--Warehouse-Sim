@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace Project_3__Warehouse_Sim
 {
-    internal class Truck
+    public class Truck
     {
         public string Driver { get; private set; }
         public string DeliveryCompany { get; private set; }

@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Project_3__Warehouse_Sim
 {
-    internal class Crate
+    public class Crate
     {
         public Random rand = new Random();
 

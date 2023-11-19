@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project_3__Warehouse_Sim
 {
-    internal class DataProcessing
+    public class DataProcessing
     {
         static public void CrateProcessing(int increment, Crate crate, string driver, string company, int trailer, int truckLine, StreamWriter writer)
         {
