@@ -18,19 +18,42 @@ using System.Threading.Tasks;
 
 namespace Project_3__Warehouse_Sim
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
+
+            
+
             string filePath = "reportTest.txt";
-            Warehouse ware = new Warehouse(10);
+            Warehouse ware = new Warehouse(15);
+            
             ware.FilePath = "test.txt";
-            ware.Run();
 
 
-            DataProcessing.SimulationReport(ware, filePath);
+            if(args.Length > 0)
+            {
+                if (args[0] == "1")
+                {
+                    ware.Run();
+                }
+                else if (args[0] == "2")
+                {
+                    ware.VisualSimTest();
 
+                }
+                
+            }
+            else
+            {
+                ware.Run();
+                
+            }
+            
 
+            
+
+            
 
         }
 
