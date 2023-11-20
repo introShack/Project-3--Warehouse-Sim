@@ -22,13 +22,10 @@ namespace Project_3__Warehouse_Sim
     {
         static void Main(string[] args)
         {
-
-            
-
-            string filePath = "reportTest.txt";
+            string reportFilePath = "reportTest.txt";
             Warehouse ware = new Warehouse(10);
             
-            ware.FilePath = "test.txt";
+            ware.FilePath = "cratesCSV.txt";
 
 
             if(args.Length > 0)
@@ -49,23 +46,20 @@ namespace Project_3__Warehouse_Sim
                 ware.Run();
                 
             }
-            
 
-            
+            DataProcessing.SimulationReport(ware, reportFilePath);
 
-            
+            //string reportFilePath;
+            //Warehouse warehouse;
 
-            string reportFilePath;
-            Warehouse warehouse;
-
-            for (int i = 3; i <= 15; i++)
-            {
-                warehouse = new Warehouse(i);
-                reportFilePath = $"reportTestNum{i}.txt";
-                warehouse.FilePath = $"cratesTestNum{i}.txt";
-                warehouse.Run();
-                DataProcessing.SimulationReport(warehouse, reportFilePath);
-            }
+            //for (int i = 3; i <= 15; i++)
+            //{
+            //    warehouse = new Warehouse(i);
+            //    reportFilePath = $"reportTestNum{i}.txt";
+            //    warehouse.FilePath = $"cratesTestNum{i}.txt";
+            //    warehouse.Run();
+            //    
+            //}
         }
 
     }
