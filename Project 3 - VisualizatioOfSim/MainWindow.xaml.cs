@@ -19,7 +19,7 @@ using System.Windows.Shapes;
 * File name: MainWindow.xaml.cs
 * Project name: Project 3
 *--------------------------------------------------------------------
-* Author’s name and email: Verdun@etsu.edu
+* Author’s name and email: XXXXX
 * Course-Section: CSCI-2210-001
 * Creation Date: 11/17/23
 * -------------------------------------------------------------------
@@ -37,13 +37,7 @@ namespace Project_3___VisualizatioOfSim
 
         public MainWindow()
         {
-
             InitializeComponent();
-
-
-            
-
-
         }
 
         /// <summary>
@@ -78,20 +72,14 @@ namespace Project_3___VisualizatioOfSim
             {
                 while(reader.Peek() != -1 )
                 {
-
                     output = reader.ReadLine();
                     
                     await Task.Delay(1000); // allows for frame by frame
                     UpdateUI(output);
-                    
                 }
                 
-
             }
             btnReturn.Visibility = Visibility.Visible; // allows for return back to menu
-
-
-
         }
 
         /// <summary>
@@ -100,13 +88,9 @@ namespace Project_3___VisualizatioOfSim
         /// <param name="dataFromSimCmdLine"></param>
         private async void UpdateUI(string dataFromSimCmdLine)
         {
-
-            
             await Task.Delay(1000); 
             warehouseCanvas.Children.Clear();
             string[] listedDataByLine = dataFromSimCmdLine.Split(","); // used to differentiate docks and other data types
-            
-            
             
             if (listedDataByLine.Length == 1)
             {
@@ -114,9 +98,6 @@ namespace Project_3___VisualizatioOfSim
             }
 
             PopulateTrucksAndDocks(listedDataByLine, numDocks);
-
-
-
         }
 
 
@@ -127,14 +108,11 @@ namespace Project_3___VisualizatioOfSim
         /// <param name="numDocks"></param>
         private void PopulateTrucksAndDocks(string[] listedDataByLine, int numDocks)
         {
-           
-
             int numTrucksPerDock;
             List<int> truckLines = new List<int>(20);
 
             if (listedDataByLine.Length > 1)
             {
-
                 double dockOffset = 50; // Offset between docks horizontally
                 double dockYPosition = 50; // Y position of docks
 
@@ -151,9 +129,7 @@ namespace Project_3___VisualizatioOfSim
 
                     truckLines.Add(Convert.ToInt32(listedDataByLine[i + 1]));
 
-                    
                     i++;
-
 
                 }
                 for (int dockIndex = 0; dockIndex < numDocks; dockIndex++)
@@ -165,16 +141,6 @@ namespace Project_3___VisualizatioOfSim
                 }
             }
             
-            
-
-
-
-
-            
-
-
-
-
         }
 
 
@@ -243,7 +209,6 @@ namespace Project_3___VisualizatioOfSim
             Process WareHouseSim = new Process();
             WareHouseSim.StartInfo = startInfo;
             WareHouseSim.Start();
-            
 
 
             using (System.IO.StreamReader reader = WareHouseSim.StandardOutput)
@@ -251,18 +216,12 @@ namespace Project_3___VisualizatioOfSim
                 await Task.Delay(1000);
                 while (( line = reader.ReadLine()) != null)
                 {
-                    
                     output = reader.ReadLine() + "\n";
 
-                    
-
                     txtBlock_CmdOutput.Text += output;
-
                 }
                 
-
             }
-
 
             WareHouseSim.WaitForExit();
             btnReturn.Visibility = Visibility.Visible;
