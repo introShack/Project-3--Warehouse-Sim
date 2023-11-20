@@ -5,4 +5,5 @@ The top performing dock counts were in the range of five and nine docks. Due to 
 the smaller dock counts were ruled out, resulting in a back-log of trucks that were not going to be finished by the end of the day. 
 On the other end of things, however, a high dock count resulted in docks sitting idle and money being lost because of the need to maintain the docks present. 
 By the end of the analysis, a count of seven docks resulted in the lowest loss of revenue with only a 34.58% loss. 
-The recommendation, therefore, is to keep the dock count to anywhere between seven and nine docks (depending on the activity expected to be seen at the warehouse in question) to maximize efficiency and minimize loss of revenue.
+The recommendation, therefore, is to keep the dock count to anywhere between seven and nine docks (depending on the activity expected to be seen at the warehouse in question) 
+to maximize efficiency and minimize loss of revenue.
