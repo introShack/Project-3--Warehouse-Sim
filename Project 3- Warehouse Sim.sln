@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project 3- Warehouse Sim", "Project 3- Warehouse Sim\Project 3- Warehouse Sim.csproj", "{F52447BD-B312-44AA-918E-BC1A90E644A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project 3 - VisualizatioOfSim", "Project 3 - VisualizatioOfSim\Project 3 - VisualizatioOfSim.csproj", "{3B6D4015-C85A-4164-9694-6FAA84D2B300}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project 3 - VisualizationOfSim", "Project 3 - VisualizatioOfSim\Project 3 - VisualizationOfSim.csproj", "{3B6D4015-C85A-4164-9694-6FAA84D2B300}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
