@@ -14,6 +14,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+/**
+*--------------------------------------------------------------------
+* File name: MainWindow.xaml.cs
+* Project name: Project 3
+*--------------------------------------------------------------------
+* Author’s name and email: Verdun@etsu.edu
+* Course-Section: CSCI-2210-001
+* Creation Date: 11/17/23
+* -------------------------------------------------------------------
+*/
 
 namespace Project_3___VisualizatioOfSim
 {
@@ -31,23 +41,28 @@ namespace Project_3___VisualizatioOfSim
             InitializeComponent();
 
 
-
+            
 
 
         }
 
+        /// <summary>
+        /// Contains execution logic for visual display, also clears buttons. communicates with Project 3- Warehouse Sim for data. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void StartVisualSim_Click(object sender, RoutedEventArgs e)
         {
             btnStart_CmdOutput.Visibility = Visibility.Collapsed;
             btnStart_VisualDisplay.Visibility = Visibility.Collapsed;
-            //btnStart_Sim
+            // clears window for visual 
+            
             string output = string.Empty;
 
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = @"C:\Users\lucei\source\repos\Project-3--Warehouse-Sim\Project 3- Warehouse Sim\bin\Debug\net6.0\Project 3- Warehouse Sim.exe"; // Replace with the path to your other project's executable
-            // C:\Users\lucei\source\repos\Project-3--Warehouse-Sim\Project 3- Warehouse Sim\bin\Debug\net6.0\Project 3- Warehouse Sim.exe
-            //@".\Stuff\adjectives.txt"
+            startInfo.FileName = @"Project 3- Warehouse Sim.exe";  
+            
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             startInfo.CreateNoWindow = true;
@@ -55,7 +70,7 @@ namespace Project_3___VisualizatioOfSim
 
             Process process = new Process();
             process.StartInfo = startInfo;
-            process.StartInfo.Arguments = "2";
+            process.StartInfo.Arguments = "2"; // command line command selector/ decides what output is printed to console.
             process.Start();
             process.WaitForExit();
 
@@ -66,40 +81,30 @@ namespace Project_3___VisualizatioOfSim
 
                     output = reader.ReadLine();
                     
-                    await Task.Delay(1000);
+                    await Task.Delay(1000); // allows for frame by frame
                     UpdateUI(output);
                     
                 }
-                //output = reader.ReadLine();
-                //outputTextBox.Text = output;
+                
 
             }
-            btnReturn.Visibility = Visibility.Visible;
+            btnReturn.Visibility = Visibility.Visible; // allows for return back to menu
 
 
 
         }
+
+        /// <summary>
+        /// used to prepare and call PopulateTrucksAndDocks
+        /// </summary>
+        /// <param name="dataFromSimCmdLine"></param>
         private async void UpdateUI(string dataFromSimCmdLine)
         {
 
-            //string[] listedDataByLine = dataFromSimCmdLine.Split(",");
-
-
-
-            // Create visual representations for each dock
-            //if (listedDataByLine.Length == 1 ) // shotty maybe: changEeEeE???????
-            //{
-            //    DrawDocks(dataFromSimCmdLine);
-            //}
-
-            // Clear existing elements before adding new ones (optional)
-
-
-            // await Task.Delay(2000);
             
-            await Task.Delay(2000);
+            await Task.Delay(1000); 
             warehouseCanvas.Children.Clear();
-            string[] listedDataByLine = dataFromSimCmdLine.Split(",");
+            string[] listedDataByLine = dataFromSimCmdLine.Split(","); // used to differentiate docks and other data types
             
             
             
@@ -112,11 +117,14 @@ namespace Project_3___VisualizatioOfSim
 
 
 
-
-
-
         }
 
+
+        /// <summary>
+        /// Gives the logic for the set up of Docks and trucks using a stackpanel and canvas
+        /// </summary>
+        /// <param name="listedDataByLine"></param>
+        /// <param name="numDocks"></param>
         private void PopulateTrucksAndDocks(string[] listedDataByLine, int numDocks)
         {
            
@@ -168,6 +176,8 @@ namespace Project_3___VisualizatioOfSim
 
 
         }
+
+
         private async void DrawDock(double layoutStartX, int dockIndex, double dockOffset, double dockYPosition)
         {
             // Create a Dock (Ellipse) at different horizontal positions
@@ -208,17 +218,24 @@ namespace Project_3___VisualizatioOfSim
 
        
 
+        /// <summary>
+        /// logic for calling the ware.run method from menu. TO DO: find reason why it reads too quick and misses first few
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// 
         private async void btnStart_CmdOutput_Click(object sender, RoutedEventArgs e)
         {
             btnStart_CmdOutput.Visibility = Visibility.Collapsed;
             btnStart_VisualDisplay.Visibility = Visibility.Collapsed;
+            txtBlock_CmdOutput.Visibility = Visibility.Visible;
             string output = string.Empty;
             string outputSelectorForCmdOutput = "1";
             string line;
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
 
-            startInfo.FileName = @"C:\Users\lucei\source\repos\Project-3--Warehouse-Sim\Project 3- Warehouse Sim\bin\Debug\net6.0\Project 3- Warehouse Sim.exe";
+            startInfo.FileName = @"Project 3- Warehouse Sim.exe";
             startInfo.Arguments = outputSelectorForCmdOutput;
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
@@ -231,18 +248,18 @@ namespace Project_3___VisualizatioOfSim
 
             using (System.IO.StreamReader reader = WareHouseSim.StandardOutput)
             {
+                await Task.Delay(1000);
                 while (( line = reader.ReadLine()) != null)
                 {
-
-                    output = reader.ReadLine();
+                    
+                    output = reader.ReadLine() + "\n";
 
                     
 
                     txtBlock_CmdOutput.Text += output;
 
                 }
-                //output = reader.ReadLine();
-                //outputTextBox.Text = output;
+                
 
             }
 
@@ -251,11 +268,20 @@ namespace Project_3___VisualizatioOfSim
             btnReturn.Visibility = Visibility.Visible;
         }
 
-       
+       /// <summary>
+       /// allows for traversal between menu and two sim options
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
             btnStart_CmdOutput.Visibility = Visibility.Visible;
             btnStart_VisualDisplay.Visibility = Visibility.Visible;
+            btnReturn.Visibility = Visibility.Collapsed;
+            txtBlock_CmdOutput.Visibility = Visibility.Collapsed;
+            warehouseCanvas.Children.Clear();
+            
+            txtBlock_CmdOutput.Clear();
         }
     }
 }

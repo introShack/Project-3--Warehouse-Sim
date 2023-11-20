@@ -29,6 +29,8 @@ namespace Project_3__Warehouse_Sim
             Warehouse ware = new Warehouse(10);
             
             ware.FilePath = "test.txt";
+
+
             if(args.Length > 0)
             {
                 if (args[0] == "1")
@@ -38,15 +40,20 @@ namespace Project_3__Warehouse_Sim
                 else if (args[0] == "2")
                 {
                     ware.VisualSimTest();
+
                 }
+                
+            }
+            else
+            {
+                ware.Run();
+                
             }
             
 
             
 
-            //DataProcessing.SimulationReport(ware, filePath);
-
-
+            
 
         }
 
