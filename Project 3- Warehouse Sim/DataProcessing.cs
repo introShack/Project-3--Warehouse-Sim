@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Project_3__Warehouse_Sim
 {
-    internal class DataProcessing
+    public class DataProcessing
     {
         /// <summary>
         /// Takes in information from warehouse object in the state it was in when a crate was unloaded, and writes this information to a file as a comma delimited line.

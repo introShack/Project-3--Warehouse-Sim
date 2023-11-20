@@ -3,12 +3,27 @@
 * File name: Dock.cs
 * Project name: Project 3
 *--------------------------------------------------------------------
-* Author’s name and email: XXXXXX
-* Course-Section: CSCI-2210-XXX
+* Author’s name and email: Verdun@etsu.edu
+* Course-Section: CSCI-2210-001
 * Creation Date: 11/5/23
 * -------------------------------------------------------------------
 */
 
+
+
+
+    // __________________________________________________________
+    // Oh great Vessel of Honour,
+    //  May your servo-motors be guarded,
+    //  Against malfunction,
+    //   As your spirit is guarded from impurity.
+    //     We beseech the Machine God to watch over you.
+    //      Let flow the sacred oils,
+    //       And let not the sorrows of the Seven Perplexities
+    //       trouble thine pistons.
+    //        Let flow the blessed unguents,
+    //        And may thine circuitry remain divinely blessed.
+    //___________________________________________________________
 using Project_3__Warehouse_Sim;
 using System;
 using System.Collections.Generic;
@@ -34,7 +49,7 @@ namespace Project_3__Warehouse_Sim
     /// <summary>
     /// This class will be responsible for much of the simualation data as well as keeping track of the trucks in line 
     /// </summary>
-    internal class Dock
+    public class Dock
     {
 
         public string Id { get; private set; }
