@@ -55,6 +55,17 @@ namespace Project_3__Warehouse_Sim
 
             
 
+            string reportFilePath;
+            Warehouse warehouse;
+
+            for (int i = 3; i <= 15; i++)
+            {
+                warehouse = new Warehouse(i);
+                reportFilePath = $"reportTestNum{i}.txt";
+                warehouse.FilePath = $"cratesTestNum{i}.txt";
+                warehouse.Run();
+                DataProcessing.SimulationReport(warehouse, reportFilePath);
+            }
         }
 
     }

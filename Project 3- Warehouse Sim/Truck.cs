@@ -25,7 +25,9 @@ namespace Project_3__Warehouse_Sim
 
         public Stack<Crate> Trailer { get; private set; }
 
-
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public Truck()
         {
             Driver = MakeName();
@@ -54,14 +56,13 @@ namespace Project_3__Warehouse_Sim
             return Trailer.Pop();
         }
 
-        //can't decide if I want to make this a static method or make it part of each truck as a set method
-        //or, maybe this method should be moved to the dock class whenever it's done?
+        /// <summary>
+        /// Randomizes a name for truck object using included text files of 25 first names and 25 last names.
+        /// </summary>
+        /// <returns>Full name of the truck driver.</returns>
         public static string MakeName()
         {
             string name = string.Empty;
-
-            //currently this implementation allows for duplicates because it will re-load the file every time.
-            //I don't think we really care about this very much tbh but still want to point it out.
 
             Random rand = new();
             List<string> firstNames = new();
@@ -91,6 +92,10 @@ namespace Project_3__Warehouse_Sim
             return name;
         }
 
+        /// <summary>
+        /// Randomizes a company for truck object using included text files of 25 adjectives and 25 nouns.
+        /// </summary>
+        /// <returns>Full company name for truck.</returns>
         public static string MakeCompany()
         {
             string company = string.Empty;

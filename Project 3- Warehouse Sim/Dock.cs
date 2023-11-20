@@ -31,12 +31,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 namespace Project_3__Warehouse_Sim
+
+//__________________________________________________________
+// Oh great Vessel of Honour,
+//  May your servo-motors be guarded,
+//   Against malfunction,
+//    As your spirit is guarded from impurity.
+//     We beseech the Machine God to watch over you.
+//      Let flow the sacred oils,
+//       And let not the sorrows of the Seven Perplexities
+//        trouble thine pistons.
+//         Let flow the blessed unguents,
+//          And may thine circuitry remain divinely blessed.
+//___________________________________________________________
+    
 {
     /// <summary>
-    /// This class will be responsible for the simualation data as well as keeping track of the trucks in line 
-    /// currently looking into graphically stuff to represent data
-    ///
-    ///
+    /// This class will be responsible for much of the simualation data as well as keeping track of the trucks in line 
     /// </summary>
     public class Dock
     {
@@ -59,7 +70,6 @@ namespace Project_3__Warehouse_Sim
             TotalTrucks = 0;
             TimeInUse = 0;
             TimeNotInUse = 0;
-
         }
 
 
@@ -72,78 +82,43 @@ namespace Project_3__Warehouse_Sim
             TotalTrucks = 0;
             TimeInUse = 0;
             TimeNotInUse = 0;
-
-
         }
 
         /// <summary>
-        /// Adds truck of choice onto queue, 
+        /// Adds truck of choice onto queue 
         /// </summary>
         /// <param name="truck"></param>
         public void JoinLine(Truck truck)
         {
-
-
             TruckLine.Enqueue(truck);
-
         }
 
 
 
 
         /// <summary>
-        /// Takes a truck off of queue and returns it, 
+        /// Takes a truck off of queue and returns it
         /// </summary>
         /// <returns> Truck off of line LIFO-Style </returns>
         public Truck SendOff()
         {
-
             if (TruckLine.Count > 0)
             {
-
-
                 TotalTrucks++; // to keep track of truck count as when a truck is sent off it is processed, thus counted towards totalTrucks
 
                 return TruckLine.Dequeue();
-
             }
             else
             {
-
-
-                return null;  // don't know how to handle this yet, thinking about throwing a exception, till then null will work
-
+                throw new IndexOutOfRangeException();
             }
 
-
-
-
-
-
         }
 
-        /// <summary>
-        /// Used to take crates from trucks randomized values and sum them up to find total amount of crates processed. 
-        /// </summary>
-        /// <param name="amountOfCratesAdded"></param>
-        public void keepTrackOfCrates(int amountOfCratesAdded)
-        {
-            TotalCrates += amountOfCratesAdded;
-        }
-
-        // implement way to change values 
-        /// <summary>
-        /// TimeKeeper intended to be called everytime the dock is in use, increments in unit of time used by main simulation
-        /// Also will use this to find TimeNotInUse via subtraction
-        /// </summary>
-        public void TimeKeeper()
-        {
-            TimeInUse++;
-        }
         /// <summary>
         /// Currently just a display of info, used for debugging currently 
         /// </summary>
-        /// <returns>A set of data(intending on changing this to a more vistual repersentation of the dock)</returns>
+        /// <returns>A set of data.</returns>
         public override string ToString()
         {
 
@@ -159,10 +134,6 @@ namespace Project_3__Warehouse_Sim
 
 
             return dockAsString;
-
-
         }
-
-
     }
 }
